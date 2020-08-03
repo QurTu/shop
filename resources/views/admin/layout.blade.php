@@ -80,7 +80,7 @@
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="{{route('category')}}" class="nav-link">Kategorijos</a></li>
-          <li class="nav-item"><a href="form-layouts.html" class="nav-link">Sub-kategorijos</a></li>
+          <li class="nav-item"><a href="{{route('subcategory')}}" class="nav-link">Sub-kategorijos</a></li>
          
         </ul>
         <a href="#" class="sl-menu-link">

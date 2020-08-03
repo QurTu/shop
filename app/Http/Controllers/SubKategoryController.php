@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SubKategory;
+use App\Kategory;
 use Illuminate\Http\Request;
 
 class SubKategoryController extends Controller
@@ -14,7 +15,9 @@ class SubKategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subCategories = SubKategory::all();
+        $categories = Kategory::all();
+        return view('admin.subCategory.subCategory',  compact('categories', 'subCategories'));
     }
 
     /**
@@ -33,10 +36,15 @@ class SubKategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function add(Request $request)
     {
-        //
+        $subkategory = new SubKategory();
+        $subkategory->name = $request->name;
+        $subkategory->category_id  = $request->category_id;
+        $subkategory->save();
+        return redirect()->back()->with('success', ' succesfully added');
     }
+
 
     /**
      * Display the specified resource.
@@ -57,7 +65,10 @@ class SubKategoryController extends Controller
      */
     public function edit(SubKategory $subKategory)
     {
-        //
+        {
+            $categories = Kategory::all();
+            return view('.admin.subCategory.edit' , compact('subKategory', 'categories'));
+        }
     }
 
     /**
@@ -69,7 +80,12 @@ class SubKategoryController extends Controller
      */
     public function update(Request $request, SubKategory $subKategory)
     {
-        //
+        {
+            $subKategory->name = $request->name;
+            $subKategory->category_id = $request->category_id;
+            $subKategory->save();
+            return redirect()->route('subcategory');
+        }
     }
 
     /**
@@ -78,8 +94,9 @@ class SubKategoryController extends Controller
      * @param  \App\SubKategory  $subKategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubKategory $subKategory)
+    public function delete(SubKategory $subKategory)
     {
-        //
+        $subKategory->delete();
+        return redirect()->route('subcategory');
     }
 }

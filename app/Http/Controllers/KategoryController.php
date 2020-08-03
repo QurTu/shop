@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Kategory;
+
+
 use Illuminate\Http\Request;
 
 class KategoryController extends Controller
@@ -35,13 +38,14 @@ class KategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function add(Request $request)
+
     {
         $kategory = new Kategory();
         $kategory->name = $request->name;
         $kategory->save();
         return redirect()->back()->with('success', ' succesfully added');
     }
-
+  
     /**
      * Display the specified resource.
      *
