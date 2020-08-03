@@ -28,3 +28,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'AdminController@index')->name('admin.home');
 Route::get('admin', 'Admin\LoginController@showLogin')->name('admin.login');
 Route::post('admin', 'Admin\LoginController@login');
+
+// kategory routes
+Route::get('admin/category', 'KategoryController@index')->name('category');
+Route::post('admin/category/add', 'KategoryController@add')->name('category.add');
+Route::post('admin/category/delete/{kategory}', 'KategoryController@delete')->name('category.delete');
+Route::get('admin/category/edit/{kategory}', 'KategoryController@edit')->name('category.edit');
+Route::post('admin/category/update/{kategory}', 'KategoryController@update')->name('category.update');
